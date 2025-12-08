@@ -4,7 +4,7 @@ const ASSETS = [
   "./index.html",
   "./style.css",
   "./app.js",
-  "./manifest.webmanifest"
+  "./manifest.json"
 ];
 
 // Install: cache basic assets
