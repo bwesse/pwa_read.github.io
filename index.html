@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Story Reader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="chapter-info">
+      <span class="chapter-label">Chapter 1</span>
+      <span class="divider">•</span>
+      <span class="level-label">Level A2</span>
+    </div>
+    <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="side-menu" id="sideMenu" aria-hidden="true">
+    <button class="close-menu" id="closeMenu" aria-label="Close menu">✕</button>
+    <ul>
+      <li><button data-view="read">Read</button></li>
+      <li><button data-view="about">About</button></li>
+      <li><button data-view="idea">Idea</button></li>
+      <li><button data-view="more">More</button></li>
+    </ul>
+  </nav>
+
+  <main id="viewRoot">
+    <!-- Default view: reading -->
+    <section data-view="read" class="view active">
+      <article class="page">
+        <h1>The Harbor</h1>
+        <p>
+          You arrive at a small village by the sea. The air smells of salt and fresh bread.
+          Fishermen talk quietly near their boats, and the water moves in slow, gentle waves.
+        </p>
+        <p>
+          A narrow street leads up the hill. There is a soft light in the windows above you,
+          and somewhere a dog barks once, then falls silent again.
+        </p>
+      </article>
+    </section>
+
+    <section data-view="about" class="view">
+      <article class="page">
+        <h1>About</h1>
+        <p>
+          This is a tiny reading app prototype. It focuses on calm, distraction-free text.
+          Later, it can grow into a full language-learning reading platform.
+        </p>
+      </article>
+    </section>
+
+    <section data-view="idea" class="view">
+      <article class="page">
+        <h1>Idea</h1>
+        <p>
+          The idea is simple: graded stories, clean reading, and a smooth path to
+          more complex language. The same core stories can live both here and in EPUB form.
+        </p>
+      </article>
+    </section>
+
+    <section data-view="more" class="view">
+      <article class="page">
+        <h1>More</h1>
+        <p>
+          Future additions might include multiple levels, inline vocabulary, audio,
+          and synced progress across devices — all starting from this minimal base.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
