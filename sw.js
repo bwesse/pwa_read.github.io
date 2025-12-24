@@ -1,4 +1,4 @@
-const CACHE_NAME = "story-reader-v1";
+const CACHE_NAME = "countdown-v1";
 const ASSETS = [
   "./",
   "./index.html",
@@ -36,7 +36,6 @@ self.addEventListener("fetch", (event) => {
       return (
         cached ||
         fetch(event.request).catch(() => {
-          // In a more advanced version, you could show a fallback page here.
           return cached;
         })
       );

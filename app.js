@@ -1,49 +1,38 @@
-// Simple view switching
-const viewRoot = document.getElementById("viewRoot");
-const sideMenu = document.getElementById("sideMenu");
-const menuButton = document.getElementById("menuButton");
-const closeMenu = document.getElementById("closeMenu");
+// Countdown to January 12, 2026
+const targetDate = new Date('2026-01-12T00:00:00').getTime();
 
-function showView(name) {
-  const views = viewRoot.querySelectorAll(".view");
-  views.forEach((v) => {
-    if (v.dataset.view === name) {
-      v.classList.add("active");
-    } else {
-      v.classList.remove("active");
-    }
-  });
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    document.getElementById('days').textContent = '0';
+    document.getElementById('hours').textContent = '0';
+    document.getElementById('minutes').textContent = '0';
+    document.getElementById('seconds').textContent = '0';
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
 }
 
-// Open / close menu
-menuButton.addEventListener("click", () => {
-  sideMenu.classList.add("open");
-  sideMenu.setAttribute("aria-hidden", "false");
-});
-
-closeMenu.addEventListener("click", () => {
-  sideMenu.classList.remove("open");
-  sideMenu.setAttribute("aria-hidden", "true");
-});
-
-// Menu links
-sideMenu.addEventListener("click", (event) => {
-  if (event.target.matches("button[data-view]")) {
-    const view = event.target.getAttribute("data-view");
-    showView(view);
-    sideMenu.classList.remove("open");
-    sideMenu.setAttribute("aria-hidden", "true");
-  }
-});
-
-// Default view
-showView("read");
+// Update countdown every second
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 // Register service worker for PWA offline support
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch((err) => {
-      console.warn("Service worker registration failed:", err);
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((err) => {
+      console.warn('Service worker registration failed:', err);
     });
   });
 }
